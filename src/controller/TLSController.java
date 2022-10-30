@@ -26,7 +26,7 @@ public class TLSController {
 		executor.submit(() -> {
 			try {
 				client.sendTLSMessage("localhost", 44330, TLS13TestDataGenerator.getInstance().createTestTLSHello());
-				client.sendTLSMessage("localhost", 44330, TLS12TestDataGenerator.getInstance().createTestTLSHello());
+				client.sendTLSMessage("localhost", 44330, TLS13TestDataGenerator.getInstance().generateExampleTLSHello());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

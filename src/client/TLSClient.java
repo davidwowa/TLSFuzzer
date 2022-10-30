@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class TLSClient {
-	public void sendTLSMessage(String host, int port, byte[] message) throws UnknownHostException, IOException {
+	public void sendTLSMessage(String host, int port, byte[] message) throws IOException {
 		Socket socket = new Socket(host, port);
 
 		OutputStream out = socket.getOutputStream();
