@@ -14,6 +14,22 @@ public class StringUtil {
 		return instance;
 	}
 
+	public static void main(String[] args) {
+		String testData = "65 78 61 6d 70 6c 65 2e 75 6c 66 68 65 69 6d 2e 6e 65 74".replace(" ", "");
+		System.out.println(StringUtil.getInstance().fromHex(testData));
+	}
+
+	// from
+	// https://stackoverflow.com/questions/32806404/convert-hexadecimal-to-string
+	public String fromHex(String hex) {
+		hex = hex.replaceAll("^(00)+", "");
+		byte[] bytes = new byte[hex.length() / 2];
+		for (int i = 0; i < hex.length(); i += 2) {
+			bytes[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4) + Character.digit(hex.charAt(i + 1), 16));
+		}
+		return new String(bytes);
+	}
+
 	public String removeWhiteCharacters(String string) {
 		if (null != string && !string.isEmpty()) {
 			return string.replaceAll("\\s+", "");
@@ -22,17 +38,6 @@ public class StringUtil {
 	}
 
 	public byte[] convertFrom(String string) {
-		byte[] ans = new byte[string.length() / 2];
-
-		for (int i = 0; i < ans.length; i++) {
-			int index = i * 2;
-			int val = Integer.parseInt(string.substring(index, index + 2), 16);
-			ans[i] = (byte) val;
-		}
-		return ans;
-	}
-
-	public byte[] convertFrom1(String string) {
 		int len = string.length();
 		byte[] ans = new byte[len / 2];
 
@@ -41,9 +46,5 @@ public class StringUtil {
 					+ Character.digit(string.charAt(i + 1), 16));
 		}
 		return ans;
-	}
-
-	public byte[] convertFrom2(String string) {
-		return string.getBytes();
 	}
 }

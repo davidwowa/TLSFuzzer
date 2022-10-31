@@ -3,7 +3,6 @@ package client;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class TLSClient {
 	public void sendTLSMessage(String host, int port, byte[] message) throws IOException {
