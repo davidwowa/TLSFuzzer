@@ -14,10 +14,10 @@ public class StringUtil {
 		return instance;
 	}
 
-	public static void main(String[] args) {
-		String testData = "65 78 61 6d 70 6c 65 2e 75 6c 66 68 65 69 6d 2e 6e 65 74".replace(" ", "");
-		System.out.println(StringUtil.getInstance().fromHex(testData));
-	}
+//	public static void main(String[] args) {
+//		String testData = "65 78 61 6d 70 6c 65 2e 75 6c 66 68 65 69 6d 2e 6e 65 74".replace(" ", "");
+//		System.out.println(StringUtil.getInstance().fromHex(testData));
+//	}
 
 	// from
 	// https://stackoverflow.com/questions/32806404/convert-hexadecimal-to-string
@@ -46,5 +46,13 @@ public class StringUtil {
 					+ Character.digit(string.charAt(i + 1), 16));
 		}
 		return ans;
+	}
+
+	public String toHexString(byte[] byteArray) {
+		String hexString = "";
+		for (byte i : byteArray) {
+			hexString += String.format("%02X", i);
+		}
+		return hexString;
 	}
 }

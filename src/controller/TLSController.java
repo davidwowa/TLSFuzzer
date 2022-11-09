@@ -9,7 +9,7 @@ import generator.TLS13TestDataGenerator;
 public class TLSController {
 
 	public static String tlsHost = "localhost";
-	public static int tlsPort = 44330;
+	public static int tlsPort = 31337;
 
 	public static void main(String[] args) {
 //		TLSServer server = new TLSServer();
@@ -26,8 +26,11 @@ public class TLSController {
 //		});
 		executor.submit(() -> {
 			try {
+				for (int i = 0; i < 100; i++) {
 //				client.sendTLSMessage(tlsHost, tlsPort, TLS13TestDataGenerator.getInstance().createTestTLSHello());
-				client.sendTLSMessage(tlsHost, tlsPort, TLS13TestDataGenerator.getInstance().generateExampleTLSHello());
+					client.sendTLSMessage(tlsHost, tlsPort,
+							TLS13TestDataGenerator.getInstance().generateExampleTLSHello());
+				}
 
 //				client.sendTLSMessage(tlsHost, tlsPort, TLS12TestDataGenerator.getInstance().createTestTLSHello());
 //				client.sendTLSMessage(tlsHost, tlsPort, TLS12TestDataGenerator.getInstance().generateExampleTLSHello());
