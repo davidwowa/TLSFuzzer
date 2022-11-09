@@ -6,7 +6,7 @@
 
 # Wireshark  
 
-![Malformed TLS Packet](https://raw.githubusercontent.com/davidwowa/TLSFuzzer/pics/MalformedTLSPacket.png)  
+![Malformed TLS Packet](pics/MalformedTLSPacket.png)  
 
 ## mac
 `/Applications/Wireshark.app/Contents/MacOS/Wireshark`  
