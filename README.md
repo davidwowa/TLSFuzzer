@@ -11,7 +11,7 @@
 ## mac
 `/Applications/Wireshark.app/Contents/MacOS/Wireshark`  
 
-# SSL Server
+# TLS Server
 ## OpenSSL
 `openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes`  
 `openssl s_server -key key.pem -cert cert.pem -accept 31337 -www -debug`  
@@ -76,14 +76,18 @@ Ncat: Failed SSL connection from 127.0.0.1: error:00000000:lib(0):func(0):reason
 NCAT DEBUG: Swapping fd[1] (5) with fd[1] (5)
 NCAT DEBUG: Removed fd 5 from list, nfds 1, maxfd 0
 ```  
-# SSL Client
+# TLS Client
 ## OpenSSL
 `openssl s_client -connect localhost:44330`  
  
-# SSL Knowledge base
+# TLS Knowledge base
 
 [RFC8446](https://datatracker.ietf.org/doc/html/rfc8446#appendix-A.1)  
+[IANA TLS extension list](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml)  
 [TLS1.2 bytebybyte description](https://tls12.xargs.org)  
 [TLS1.3 bytebybyte description](https://tls13.xargs.org)  
 [ncat with ssl](https://nmap.org/ncat/guide/ncat-ssl.html)  
 
+# Randoms
+
+[secure random](https://www.baeldung.com/java-secure-random)  

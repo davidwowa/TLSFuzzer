@@ -4,7 +4,12 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class RandomGenerator {
+
+	private static final Logger logger = LogManager.getLogger(RandomGenerator.class);
 
 	private static RandomGenerator instance;
 
@@ -25,7 +30,9 @@ public class RandomGenerator {
 			rd.nextBytes(arr);
 			return arr;
 		} catch (NoSuchAlgorithmException e) {
-			System.err.println("error on generating random byte array");
+			if (logger.isErrorEnabled()) {
+				logger.error("error on generating random byte array", e);
+			}
 			e.printStackTrace();
 		}
 		return null;

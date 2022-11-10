@@ -13,7 +13,7 @@ public class TLSServer {
 
 		Socket socket = serverSocket.accept();
 		InputStream in = socket.getInputStream();
-		OutputStream out = new FileOutputStream("test2.data");
+		OutputStream out = new FileOutputStream("server_input.data");
 
 		byte[] bytes = new byte[10];
 
