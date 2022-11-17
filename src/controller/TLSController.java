@@ -16,7 +16,7 @@ public class TLSController {
 	public static String tlsHost = "localhost";
 	public static int tlsPort = 31337;
 
-	public static long amountTLSRequests = 100;
+	public static int amountTLSRequests = 100000;
 
 	public static int threadsAmount = 4;
 
@@ -48,30 +48,43 @@ public class TLSController {
 			}
 		});
 		executor.submit(() -> {
-			try {
-				for (int i = 0; i < amountTLSRequests; i++) {
+			for (int i = 0; i < amountTLSRequests; i++) {
+				try {
 					client.sendTLSMessage(tlsHost, tlsPort,
 							TLS13TestDataGenerator.getInstance().generateExampleTLSHelloRandomExtensionData());
+					showStatus("data generator 1 : only hello client extensions", amountTLSRequests, i);
+				} catch (Exception e) {
+					if (logger.isErrorEnabled()) {
+						logger.error(String.format("error tls fuzzer test number %s", i), e);
+					}
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				if (logger.isErrorEnabled()) {
-					logger.error("error on start from tls fuzzer test", e);
-				}
-				e.printStackTrace();
 			}
 		});
 		executor.submit(() -> {
-			try {
-				for (int i = 0; i < amountTLSRequests; i++) {
+			for (int i = 0; i < amountTLSRequests; i++) {
+				try {
 					client.sendTLSMessage(tlsHost, tlsPort,
 							TLS13TestDataGenerator.getInstance().generateExampleTLSRHelloRandomExtensionData());
+					showStatus("data generator 2 : random data in completely hello client", amountTLSRequests, i);
+				} catch (Exception e) {
+					if (logger.isErrorEnabled()) {
+						logger.error(String.format("error tls fuzzer test number %s", i), e);
+					}
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				if (logger.isErrorEnabled()) {
-					logger.error("error on start from tls fuzzer test", e);
-				}
-				e.printStackTrace();
 			}
 		});
+
+		executor.shutdown();
+	}
+
+	public static void showStatus(String name, int total, int part) {
+		// TODO improve status ...
+		float percentage = ((float) part / (float) total) * 100f;
+		if (((int) percentage % 5 == 0 || (int) percentage == 100 || (int) percentage == 99)
+				&& logger.isInfoEnabled()) {
+			logger.info(String.format("%s %s %%", name, percentage));
+		}
 	}
 }

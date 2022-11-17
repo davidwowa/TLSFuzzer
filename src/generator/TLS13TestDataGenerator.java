@@ -81,8 +81,8 @@ public class TLS13TestDataGenerator {
 				extensionDataGenerator.createTestExtensionPSKKeyExchangeModesR16(),
 				extensionDataGenerator.createTestExtensionKeyShareR17());
 
-		if (logger.isInfoEnabled()) {
-			logger.info(StringUtil.getInstance().toHexString(arr));
+		if (logger.isDebugEnabled()) {
+			logger.debug(StringUtil.getInstance().toHexString(arr));
 		}
 		return arr;
 	}
@@ -113,8 +113,8 @@ public class TLS13TestDataGenerator {
 				extensionDataGenerator.createTestExtensionPSKKeyExchangeModesR16(),
 				extensionDataGenerator.createTestExtensionKeyShareR17());
 
-		if (logger.isInfoEnabled()) {
-			logger.info(StringUtil.getInstance().toHexString(arr));
+		if (logger.isDebugEnabled()) {
+			logger.debug(StringUtil.getInstance().toHexString(arr));
 		}
 		return arr;
 	}

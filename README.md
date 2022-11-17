@@ -1,21 +1,19 @@
 # TLSFuzzer
-
 ## Goal
-
 ## Roadmap
-
 # Wireshark  
-
 ![Malformed TLS Packet](pics/MalformedTLSPacket.png)  
-
 ## mac
 `/Applications/Wireshark.app/Contents/MacOS/Wireshark`  
-
 # TLS Server
 ## OpenSSL
+### Unix
 `openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes`  
 `openssl s_server -key key.pem -cert cert.pem -accept 31337 -www -debug`  
-```
+### Windows
+`C:\Program Files\Git\usr\bin\openssl.exe req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes`  
+`C:\Program Files\Git\usr\bin\openssl.exe s_server -key key.pem -cert cert.pem -accept 31337 -www -debug`  
+###
 Using auto DH parameters
 Using default temp ECDH parameters
 ACCEPT
@@ -79,15 +77,11 @@ NCAT DEBUG: Removed fd 5 from list, nfds 1, maxfd 0
 # TLS Client
 ## OpenSSL
 `openssl s_client -connect localhost:44330`  
- 
 # TLS Knowledge base
-
 [RFC8446](https://datatracker.ietf.org/doc/html/rfc8446#appendix-A.1)  
 [IANA TLS extension list](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml)  
 [TLS1.2 bytebybyte description](https://tls12.xargs.org)  
 [TLS1.3 bytebybyte description](https://tls13.xargs.org)  
 [ncat with ssl](https://nmap.org/ncat/guide/ncat-ssl.html)  
-
 # Randoms
-
 [secure random](https://www.baeldung.com/java-secure-random)  
