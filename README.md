@@ -1,19 +1,32 @@
 # TLSFuzzer
+
 ## Goal
+
 ## Roadmap
+
 # Wireshark  
+
 ![Malformed TLS Packet](pics/MalformedTLSPacket.png)  
+
 ## mac
+
 `/Applications/Wireshark.app/Contents/MacOS/Wireshark`  
+
 # TLS Server
+
 ## OpenSSL
+
 ### Unix
+
 `openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes`  
 `openssl s_server -key key.pem -cert cert.pem -accept 31337 -www -debug`  
+
 ### Windows
+
 `C:\Program Files\Git\usr\bin\openssl.exe req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes`  
 `C:\Program Files\Git\usr\bin\openssl.exe s_server -key key.pem -cert cert.pem -accept 31337 -www -debug`  
-###
+
+```
 Using auto DH parameters
 Using default temp ECDH parameters
 ACCEPT
@@ -39,10 +52,12 @@ read from 0x7fd62ef07c40 [0x7fd630812808] (248 bytes => 248 (0xF8))
 write to 0x7fd62ef07c40 [0x7fd630820200] (7 bytes => 7 (0x7))
 0000 - 15 03 03 00 02 02 28                              ......(
 4549750444:error:140270C1:SSL routines:ACCEPT_SR_CLNT_HELLO_C:no shared cipher:/System/Volumes/Data/SWE/macOS/BuildRoots/37599d3d49/Library/Caches/com.apple.xbs/Sources/libressl/libressl-56.60.4/libressl-2.8/ssl/ssl_srvr.c:1115:
-ACCEPT
-```  
+ACCEPT```   
+  
 ## ncat
+
 `ncat -vvvv --listen --ssl`  
+
 ```
 Ncat: Version 7.91 ( https://nmap.org/ncat )
 Ncat: Generating a temporary 2048-bit RSA key. Use --ssl-key and --ssl-cert to use a permanent one.
@@ -74,14 +89,21 @@ Ncat: Failed SSL connection from 127.0.0.1: error:00000000:lib(0):func(0):reason
 NCAT DEBUG: Swapping fd[1] (5) with fd[1] (5)
 NCAT DEBUG: Removed fd 5 from list, nfds 1, maxfd 0
 ```  
+
 # TLS Client
+
 ## OpenSSL
+
 `openssl s_client -connect localhost:44330`  
+
 # TLS Knowledge base
+
 [RFC8446](https://datatracker.ietf.org/doc/html/rfc8446#appendix-A.1)  
 [IANA TLS extension list](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml)  
 [TLS1.2 bytebybyte description](https://tls12.xargs.org)  
 [TLS1.3 bytebybyte description](https://tls13.xargs.org)  
 [ncat with ssl](https://nmap.org/ncat/guide/ncat-ssl.html)  
+
 # Randoms
+
 [secure random](https://www.baeldung.com/java-secure-random)  
