@@ -52,8 +52,8 @@ read from 0x7fd62ef07c40 [0x7fd630812808] (248 bytes => 248 (0xF8))
 write to 0x7fd62ef07c40 [0x7fd630820200] (7 bytes => 7 (0x7))
 0000 - 15 03 03 00 02 02 28                              ......(
 4549750444:error:140270C1:SSL routines:ACCEPT_SR_CLNT_HELLO_C:no shared cipher:/System/Volumes/Data/SWE/macOS/BuildRoots/37599d3d49/Library/Caches/com.apple.xbs/Sources/libressl/libressl-56.60.4/libressl-2.8/ssl/ssl_srvr.c:1115:
-ACCEPT```   
-  
+ACCEPT
+```
 ## ncat
 
 `ncat -vvvv --listen --ssl`  
@@ -88,8 +88,7 @@ NCAT DEBUG: fd 5 is ready
 Ncat: Failed SSL connection from 127.0.0.1: error:00000000:lib(0):func(0):reason(0)
 NCAT DEBUG: Swapping fd[1] (5) with fd[1] (5)
 NCAT DEBUG: Removed fd 5 from list, nfds 1, maxfd 0
-```  
-
+```
 # TLS Client
 
 ## OpenSSL
