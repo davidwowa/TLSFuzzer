@@ -16,23 +16,15 @@ public class TLSController {
 	public static String tlsHost = "localhost";
 	public static int tlsPort = 31337;
 
-	public static int amountTLSRequests = 100000;
+	public static int amountTLSRequests = 100;
 
 	public static int threadsAmount = 4;
 
 	public static void main(String[] args) {
-//		TLSServer server = new TLSServer();
 		TLSClient client = TLSClient.getInstance();
 
 		ExecutorService executor = Executors.newFixedThreadPool(threadsAmount);
 
-//		executor.submit(() -> {
-//			try {
-//				server.simpleServer();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		});
 		if (logger.isInfoEnabled()) {
 			logger.info(String.format("start tls fuzzy test host %s, port %s, amount tls requests %s", tlsHost, tlsPort,
 					amountTLSRequests));
@@ -80,7 +72,6 @@ public class TLSController {
 	}
 
 	public static void showStatus(String name, int total, int part) {
-		// TODO improve status ...
 		float percentage = ((float) part / (float) total) * 100f;
 		if (((int) percentage % 5 == 0 || (int) percentage == 100 || (int) percentage == 99)
 				&& logger.isInfoEnabled()) {

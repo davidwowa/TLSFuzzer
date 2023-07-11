@@ -23,8 +23,9 @@
 
 ### Windows
 
-`C:\Program Files\Git\usr\bin\openssl.exe req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes`  
-`C:\Program Files\Git\usr\bin\openssl.exe s_server -key key.pem -cert cert.pem -accept 31337 -www -debug`  
+`& 'C:\Program Files\Git\usr\bin\openssl.exe' req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes`  
+`& 'C:\Program Files\Git\usr\bin\openssl.exe' s_server -key key.pem -cert cert.pem -accept 31337 -www -debug`  
+`& 'C:\Program Files\Git\usr\bin\openssl.exe' x509 -in cert.pem -text`  
 
 ```
 Using auto DH parameters

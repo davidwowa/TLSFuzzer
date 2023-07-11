@@ -1,0 +1,43 @@
+2023-07-11 22:44:32.233 [main] INFO  controller.TLSController - start tls fuzzy test host localhost, port 31337, amount tls requests 100
+2023-07-11 22:44:32.434 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 0.0 %
+2023-07-11 22:44:32.436 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 0.0 %
+2023-07-11 22:44:32.577 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 5.0 %
+2023-07-11 22:44:32.606 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 5.0 %
+2023-07-11 22:44:32.612 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 10.0 %
+2023-07-11 22:44:32.664 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 15.000001 %
+2023-07-11 22:44:32.728 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 10.0 %
+2023-07-11 22:44:32.739 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 20.0 %
+2023-07-11 22:44:32.772 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 15.000001 %
+2023-07-11 22:44:32.772 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 25.0 %
+2023-07-11 22:44:32.798 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 30.000002 %
+2023-07-11 22:44:32.827 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 20.0 %
+2023-07-11 22:44:32.853 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 35.0 %
+2023-07-11 22:44:32.883 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 25.0 %
+2023-07-11 22:44:32.892 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 40.0 %
+2023-07-11 22:44:32.911 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 30.000002 %
+2023-07-11 22:44:32.916 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 45.0 %
+2023-07-11 22:44:33.001 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 35.0 %
+2023-07-11 22:44:33.024 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 50.0 %
+2023-07-11 22:44:33.067 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 55.0 %
+2023-07-11 22:44:33.079 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 40.0 %
+2023-07-11 22:44:33.092 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 60.000004 %
+2023-07-11 22:44:33.137 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 65.0 %
+2023-07-11 22:44:33.137 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 45.0 %
+2023-07-11 22:44:33.184 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 70.0 %
+2023-07-11 22:44:33.199 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 50.0 %
+2023-07-11 22:44:34.420 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 75.0 %
+2023-07-11 22:44:34.432 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 55.0 %
+2023-07-11 22:44:34.452 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 80.0 %
+2023-07-11 22:44:34.482 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 60.000004 %
+2023-07-11 22:44:34.498 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 85.0 %
+2023-07-11 22:44:34.531 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 65.0 %
+2023-07-11 22:44:34.537 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 90.0 %
+2023-07-11 22:44:34.596 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 95.0 %
+2023-07-11 22:44:34.598 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 70.0 %
+2023-07-11 22:44:34.617 [pool-2-thread-2] INFO  controller.TLSController - data generator 1 : only hello client extensions 99.0 %
+2023-07-11 22:44:35.826 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 75.0 %
+2023-07-11 22:44:35.840 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 80.0 %
+2023-07-11 22:44:35.854 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 85.0 %
+2023-07-11 22:44:35.872 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 90.0 %
+2023-07-11 22:44:35.910 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 95.0 %
+2023-07-11 22:44:35.926 [pool-2-thread-3] INFO  controller.TLSController - data generator 2 : random data in completely hello client 99.0 %
