@@ -1,8 +1,7 @@
 #Enviroments
 
-- SonarCube for InteliJ
+
 - JUnit testing
-- Eclipse
 - Constructor in Java
 
 #Organization setup

@@ -8,15 +8,16 @@ public class TLSRandomNumber {
 	public String generateASCIIString(int lenght) {
 		Random random = new Random(255);
 
-		//TODO 
-		// use StringBuilder in this context
-		String string = "";
+		StringBuilder string = new StringBuilder();
 
-		for (int i = 0; i <= lenght; i++) {
-			string = string + (char) random.nextInt();
-		}
-		return string;
+        
+		for (int i = 0; i < lenght; i++) {
+            string.append((char) random.nextInt(255));
+        }
+
+        return string.toString();
 	}
+	
 
 	public long generateNumbers(long min, long max) {
 		SecureRandom random = new SecureRandom();
@@ -27,14 +28,13 @@ public class TLSRandomNumber {
 		SecureRandom random = new SecureRandom();
 		BigDecimal range = max.subtract(min);
 		BigDecimal randomNumberInRange = range.multiply(new BigDecimal(random.nextLong()));
-		BigDecimal randomBigDecimal = randomNumberInRange.add(min);
-		return randomBigDecimal;
+		return randomNumberInRange.add(min);
 	}
 
 	public static void main(String[] args) {
 		TLSRandomNumber r = new TLSRandomNumber();
 
-		System.out.println(r.generateASCIIString(10));
+		System.out.println(r.generateASCIIString(15));
 
 		System.out.println(r.generateNumbers(-10000, 10000));
 
