@@ -10,8 +10,7 @@ public class TLSRandomNumber {
 
 		StringBuilder string = new StringBuilder();
 
-        
-		for (int i = 0; i < lenght; i++) {
+        	for (int i = 0; i < lenght; i++) {
             string.append((char) random.nextInt(255));
         }
 
