@@ -3,6 +3,7 @@ package interfaces.impl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import generator.TLS13TestDataGenerator;
 import interfaces.ITLSClientHello;
 
 /**
@@ -68,6 +69,4 @@ public class TLSClientHelloImplSimple implements ITLSClientHello {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'generateExtensionLength'");
     }
-
-    
 }
