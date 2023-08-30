@@ -10,13 +10,12 @@ public class TLSRandomNumber {
 
 		StringBuilder string = new StringBuilder();
 
-        	for (int i = 0; i < lenght; i++) {
-            string.append((char) random.nextInt(255));
-        }
+		for (int i = 0; i < lenght; i++) {
+			string.append((char) random.nextInt(255));
+		}
 
-        return string.toString();
+		return string.toString();
 	}
-	
 
 	public long generateNumbers(long min, long max) {
 		SecureRandom random = new SecureRandom();

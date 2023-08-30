@@ -1,5 +1,9 @@
-#Enviroments
+#IDE
 
+Code format -> Ctrl-Schift-F
+Import organizing -> Ctrl-Shift-O
+
+#Enviroments  
 
 - JUnit testing
 - Constructor in Java
