@@ -7,13 +7,11 @@ import java.util.Random;
 public class TLSRandomNumber {
 	public String generateASCIIString(int lenght) {
 		Random random = new Random(255);
-
 		StringBuilder string = new StringBuilder();
 
 		for (int i = 0; i < lenght; i++) {
 			string.append((char) random.nextInt(255));
 		}
-
 		return string.toString();
 	}
 
