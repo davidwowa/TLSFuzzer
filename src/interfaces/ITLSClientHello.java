@@ -16,5 +16,4 @@ public interface ITLSClientHello extends Serializable {
     byte[] generateSessionID();
     byte[] generateCipherSuits();
     byte[] generateCompressionsMethods();
-    byte[] generateExtensionLength();
 }

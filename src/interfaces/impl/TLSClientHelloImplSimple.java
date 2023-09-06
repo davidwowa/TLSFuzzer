@@ -3,6 +3,7 @@ package interfaces.impl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import generator.TLS13TestValidDataGenerator;
 import interfaces.ITLSClientHello;
 
 /**
@@ -14,60 +15,50 @@ import interfaces.ITLSClientHello;
 public class TLSClientHelloImplSimple implements ITLSClientHello {
 
     private static final Logger logger = LogManager.getLogger(TLSClientHelloImplSimple.class);
+    private TLS13TestValidDataGenerator generator;
 
     public TLSClientHelloImplSimple() {
         if (logger.isDebugEnabled()) {
             logger.debug(String.format("Created %s", this.getClass().getName()));
         }
+        generator = TLS13TestValidDataGenerator.getInstance();
     }
 
     @Override
     public byte[] generateRecordHeader() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateRecordHeader'");
+        return generator.createTLSRecordHeader0();
     }
 
     @Override
     public byte[] generateHandshakeHeader() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateHandshakeHeader'");
+        return generator.createTestHandshakeHeader1();
     }
 
     @Override
     public byte[] generateClientVersion() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateClientVersion'");
+        return generator.createTestClientVersion2();
     }
 
     @Override
     public byte[] generateClientRandom() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateClientRandom'");
+        return generator.createTestClientRandom3();
     }
 
     @Override
     public byte[] generateSessionID() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateSessionID'");
+        return generator.createTestSessionID4();
     }
 
     @Override
     public byte[] generateCipherSuits() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateCipherSuits'");
+        return generator.createTestCipherSuites5();
     }
 
     @Override
     public byte[] generateCompressionsMethods() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateCompressionsMethods'");
+        return generator.createTestCompressionMethods6();
     }
 
-    @Override
-    public byte[] generateExtensionLength() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'generateExtensionLength'");
-    }
 
     public static void main(String[] args) {
         TLSClientHelloImplSimple tls = new TLSClientHelloImplSimple();
