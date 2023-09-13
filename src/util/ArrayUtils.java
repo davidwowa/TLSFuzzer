@@ -20,4 +20,15 @@ public class ArrayUtils {
 		}
 		return arr;
 	}
+	
+	public static String bytesToHexadecimal(byte[] bytes) {
+		StringBuilder sb = new StringBuilder();
+			
+		for (byte b : bytes) {
+			sb.append(String.format("%02X ", b));
+		}
+			
+		return sb.toString().trim();
+		}
+	
 }

@@ -1,5 +1,6 @@
 package interfaces.impl;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -59,10 +60,12 @@ public class TLSClientHelloImplSimple implements ITLSClientHello {
         return generator.createTestCompressionMethods6();
     }
 
-
     public static void main(String[] args) {
         TLSClientHelloImplSimple tls = new TLSClientHelloImplSimple();
 
-        System.out.println(tls.generateCipherSuits());
+  //    ArrayUtils bytesConverter = new ArrayUtils(ArrayUtils.bytesToHexadecimal);
+   //     String hexadecimalString = ArrayUtils.bytesConverter(tls.generateCipherSuits());
+
+        // System.out.println(hexadecimalString);
     }
 }
