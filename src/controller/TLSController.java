@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import client.TLSClient;
-import generator.TLS13TestDataGenerator;
 import util.RandomUtil;
 
 public class TLSController {
@@ -17,9 +16,9 @@ public class TLSController {
 	public static String tlsHost = "localhost";
 	public static int tlsPort = 31337;
 
-	public static int amountTLSRequests = 1;
+	public static int amountTLSRequests = 100;
 
-	public static int threadsAmount = 2;
+	public static int threadsAmount = 3;
 
 	public static void main(String[] args) {
 		TLSClient client = TLSClient.getInstance();
@@ -31,50 +30,55 @@ public class TLSController {
 					amountTLSRequests));
 		}
 		// executor.submit(() -> {
-		// 	try {
-		// 		client.sendTLSMessage(tlsHost, tlsPort, TLS13TestDataGenerator.getInstance().generateExampleTLSHello());
-		// 	} catch (Exception e) {
-		// 		if (logger.isErrorEnabled()) {
-		// 			logger.error("error on start from tls fuzzer test", e);
-		// 		}
-		// 		e.printStackTrace();
-		// 	}
+		// try {
+		// client.sendTLSMessage(tlsHost, tlsPort,
+		// TLS13TestDataGenerator.getInstance().generateExampleTLSHello());
+		// } catch (Exception e) {
+		// if (logger.isErrorEnabled()) {
+		// logger.error("error on start from tls fuzzer test", e);
+		// }
+		// e.printStackTrace();
+		// }
 		// });
 		// executor.submit(() -> {
-		// 	for (int i = 0; i < amountTLSRequests; i++) {
-		// 		try {
-		// 			client.sendTLSMessage(tlsHost, tlsPort,
-		// 					TLS13TestDataGenerator.getInstance().generateExampleTLSHelloRandomExtensionData());
-		// 			showStatus("data generator 1 : only hello client extensions", amountTLSRequests, i);
-		// 		} catch (Exception e) {
-		// 			if (logger.isErrorEnabled()) {
-		// 				logger.error(String.format("error tls fuzzer test number %s", i), e);
-		// 			}
-		// 			e.printStackTrace();
-		// 		}
-		// 	}
+		// for (int i = 0; i < amountTLSRequests; i++) {
+		// try {
+		// client.sendTLSMessage(tlsHost, tlsPort,
+		// TLS13TestDataGenerator.getInstance().generateExampleTLSHelloRandomExtensionData());
+		// showStatus("data generator 1 : only hello client extensions",
+		// amountTLSRequests, i);
+		// } catch (Exception e) {
+		// if (logger.isErrorEnabled()) {
+		// logger.error(String.format("error tls fuzzer test number %s", i), e);
+		// }
+		// e.printStackTrace();
+		// }
+		// }
 		// });
 		// executor.submit(() -> {
-		// 	for (int i = 0; i < amountTLSRequests; i++) {
-		// 		try {
-		// 			client.sendTLSMessage(tlsHost, tlsPort,
-		// 					TLS13TestDataGenerator.getInstance().generateExampleTLSRHelloRandomExtensionData());
-		// 			showStatus("data generator 2 : random data in completely hello client", amountTLSRequests, i);
-		// 		} catch (Exception e) {
-		// 			if (logger.isErrorEnabled()) {
-		// 				logger.error(String.format("error tls fuzzer test number %s", i), e);
-		// 			}
-		// 			e.printStackTrace();
-		// 		}
-		// 	}
+		// for (int i = 0; i < amountTLSRequests; i++) {
+		// try {
+		// client.sendTLSMessage(tlsHost, tlsPort,
+		// TLS13TestDataGenerator.getInstance().generateExampleTLSRHelloRandomExtensionData());
+		// showStatus("data generator 2 : random data in completely hello client",
+		// amountTLSRequests, i);
+		// } catch (Exception e) {
+		// if (logger.isErrorEnabled()) {
+		// logger.error(String.format("error tls fuzzer test number %s", i), e);
+		// }
+		// e.printStackTrace();
+		// }
+		// }
 		// });
 		executor.submit(() -> {
 			long startTime = System.currentTimeMillis();
 			for (int i = 0; i < amountTLSRequests; i++) {
 				try {
-					client.sendTLSMessage(tlsHost, tlsPort,
-							RandomUtil.getInstance().getEmptyArray());
+					byte[] response = client.sendTLSMessage(tlsHost, tlsPort,
+							RandomUtil.getInstance().generateRandomArray(100));
+					logger.info(new String(response));
 					showStatus("data generator 2 : random data in completely hello client", amountTLSRequests, i);
+					// TODO get status from ExecutorService is maybe better way...
 				} catch (Exception e) {
 					if (logger.isErrorEnabled()) {
 						logger.error(String.format("error tls fuzzer test number %s", i), e);

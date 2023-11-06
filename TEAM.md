@@ -1,6 +1,6 @@
 # IDE  
 
-Code format -> Ctrl-Schift-F
+Code format -> Ctrl-Schift-F  
 Import organizing -> Ctrl-Shift-O
 
 # Environments  
