@@ -35,6 +35,10 @@ public class RandomUtil {
 		return null;
 	}
 
+	public byte[] getEmptyArray() {
+		return new byte[0];
+	}
+
 	public int generateRandomNumber(int start, int end) {
 		try {
 			SecureRandom random = SecureRandom.getInstanceStrong();

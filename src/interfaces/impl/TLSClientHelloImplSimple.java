@@ -1,11 +1,11 @@
 package interfaces.impl;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import generator.TLS13TestValidDataGenerator;
 import interfaces.ITLSClientHello;
+import util.ArrayUtils;
 
 /**
  * @author David Zakrevskyy
@@ -63,9 +63,13 @@ public class TLSClientHelloImplSimple implements ITLSClientHello {
     public static void main(String[] args) {
         TLSClientHelloImplSimple tls = new TLSClientHelloImplSimple();
 
-  //    ArrayUtils bytesConverter = new ArrayUtils(ArrayUtils.bytesToHexadecimal);
-   //     String hexadecimalString = ArrayUtils.bytesConverter(tls.generateCipherSuits());
+        ArrayUtils bytesConverter = new ArrayUtils();
+    
+        String test = "badabum";
 
-        // System.out.println(hexadecimalString);
+        String result = bytesConverter.bytesToHexadecimal(test.getBytes());
+        
+        System.out.println(result);
+        //16 03 01 00 f8
     }
 }

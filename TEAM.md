@@ -22,4 +22,7 @@ Import organizing -> Ctrl-Shift-O
 	- TLS Fuzzer
 	- white hacking technologies
 	- find implementation errors in TLS
-	
+
+#Maven
+
+'mvn clean install' - refresh project

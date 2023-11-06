@@ -28,12 +28,29 @@ public class TLSRandomNumber {
 	}
 
 	public static void main(String[] args) {
-		TLSRandomNumber r = new TLSRandomNumber();
+		testException();
+	}
 
-		System.out.println(r.generateASCIIString(15));
+	public static void testException() {
+		try {
+			int a = 1;
+			int b = 1;
 
-		System.out.println(r.generateNumbers(-10000, 10000));
+			int c = a / b;
 
-		System.out.println(r.generateBigDecimal(BigDecimal.ZERO, BigDecimal.TEN));
+			throw new IllegalAccessError("test exceptiion");
+
+			// System.out.println(c);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			System.out.println("other steps after this error");
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("other steps after other error");
+		} finally {
+			
+		}
+
+		System.out.println("next steps");
 	}
 }
