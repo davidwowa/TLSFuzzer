@@ -7,3 +7,5 @@ bin/
 .vscode/
 logs/
 test/
+TLSFuzzer-sBOM.json
+TLSFuzzer-sBOM.xml
