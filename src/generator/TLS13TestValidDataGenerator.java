@@ -1,7 +1,7 @@
 package generator;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import util.ArrayUtils;
 import util.RandomUtil;
@@ -9,7 +9,7 @@ import util.StringUtil;
 
 public class TLS13TestValidDataGenerator {
 
-	private static final Logger logger = LogManager.getLogger(TLS13TestValidDataGenerator.class);
+	private static final Logger logger = Logger.getLogger(TLS13TestValidDataGenerator.class.getName());
 
 	private static TLS13TestValidDataGenerator instance;
 
@@ -49,8 +49,8 @@ public class TLS13TestValidDataGenerator {
 				extensionDataGenerator.createTestExtensionPSKKeyExchangeModes16(),
 				extensionDataGenerator.createTestExtensionKeyShare17());
 
-		if (logger.isInfoEnabled()) {
-			logger.info(StringUtil.getInstance().toHexString(arr));
+		if (logger.isLoggable(Level.FINE)) {
+			logger.fine(StringUtil.getInstance().toHexString(arr));
 		}
 		return arr;
 	}
@@ -81,8 +81,8 @@ public class TLS13TestValidDataGenerator {
 				extensionDataGenerator.createTestExtensionPSKKeyExchangeModesR16(),
 				extensionDataGenerator.createTestExtensionKeyShareR17());
 
-		if (logger.isDebugEnabled()) {
-			logger.debug(StringUtil.getInstance().toHexString(arr));
+		if (logger.isLoggable(Level.FINE)) {
+			logger.fine(StringUtil.getInstance().toHexString(arr));
 		}
 		return arr;
 	}
@@ -113,8 +113,8 @@ public class TLS13TestValidDataGenerator {
 				extensionDataGenerator.createTestExtensionPSKKeyExchangeModesR16(),
 				extensionDataGenerator.createTestExtensionKeyShareR17());
 
-		if (logger.isDebugEnabled()) {
-			logger.debug(StringUtil.getInstance().toHexString(arr));
+		if (logger.isLoggable(Level.FINE)) {
+			logger.fine(StringUtil.getInstance().toHexString(arr));
 		}
 		return arr;
 	}

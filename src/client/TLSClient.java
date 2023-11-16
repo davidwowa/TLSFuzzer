@@ -5,19 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TLSClient {
 
-	private static final Logger logger = LogManager.getLogger(TLSClient.class);
+	private static final Logger logger = Logger.getLogger(TLSClient.class.getName());
 
 	public static TLSClient instance;
 
 	private TLSClient() {
-		if (logger.isDebugEnabled()) {
-			logger.debug(String.format("create instance of %s", this.getClass().getName()));
+		if (logger.isLoggable(Level.INFO)) {
+			logger.info(String.format("create instance of %s", this.getClass().getName()));
 		}
 	}
 

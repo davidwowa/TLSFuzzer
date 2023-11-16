@@ -1,7 +1,7 @@
 package interfaces.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import generator.TLS13TestValidDataGenerator;
 import interfaces.ITLSClientHello;
@@ -15,12 +15,12 @@ import util.ArrayUtils;
  */
 public class TLSClientHelloImplSimple implements ITLSClientHello {
 
-    private static final Logger logger = LogManager.getLogger(TLSClientHelloImplSimple.class);
+    private static final Logger logger = Logger.getLogger(TLSClientHelloImplSimple.class.getName());
     private TLS13TestValidDataGenerator generator;
 
     public TLSClientHelloImplSimple() {
-        if (logger.isDebugEnabled()) {
-            logger.debug(String.format("Created %s", this.getClass().getName()));
+        if (logger.isLoggable(Level.FINE)) {
+            logger.fine(String.format("Created %s", this.getClass().getName()));
         }
         generator = TLS13TestValidDataGenerator.getInstance();
     }
@@ -64,12 +64,12 @@ public class TLSClientHelloImplSimple implements ITLSClientHello {
         TLSClientHelloImplSimple tls = new TLSClientHelloImplSimple();
 
         ArrayUtils bytesConverter = new ArrayUtils();
-    
+
         String test = "badabum";
 
         String result = bytesConverter.bytesToHexadecimal(test.getBytes());
-        
+
         System.out.println(result);
-        //16 03 01 00 f8
+        // 16 03 01 00 f8
     }
 }

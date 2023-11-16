@@ -9,3 +9,4 @@ logs/
 test/
 TLSFuzzer-sBOM.json
 TLSFuzzer-sBOM.xml
+TLSFuzzer.log*

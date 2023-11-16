@@ -3,13 +3,12 @@ package generator;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RandomGenerator {
 
-	private static final Logger logger = LogManager.getLogger(RandomGenerator.class);
+	private static final Logger logger = Logger.getLogger(RandomGenerator.class.getName());
 
 	private static RandomGenerator instance;
 
@@ -30,8 +29,8 @@ public class RandomGenerator {
 			rd.nextBytes(arr);
 			return arr;
 		} catch (NoSuchAlgorithmException e) {
-			if (logger.isErrorEnabled()) {
-				logger.error("error on generating random byte array", e);
+			if (logger.isLoggable(Level.SEVERE)) {
+				logger.severe("error on generating random byte array" + e.getMessage());
 			}
 			e.printStackTrace();
 		}

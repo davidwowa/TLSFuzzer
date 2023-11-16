@@ -6,16 +6,6 @@
 	<artifactId>TLSFuzzer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
-    <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-api</artifactId>
-        <version>2.21.1</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-        <version>2.21.1</version>
-    </dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -40,33 +30,34 @@
 			</plugin>
 			<!-- https://github.com/CycloneDX/cyclonedx-maven-plugin -->
 			<plugin>
-        		<groupId>org.cyclonedx</groupId>
-        		<artifactId>cyclonedx-maven-plugin</artifactId>
+				<groupId>org.cyclonedx</groupId>
+				<artifactId>cyclonedx-maven-plugin</artifactId>
 				<executions>
-            		<execution>
-                		<phase>package</phase>
-                		<goals>
-                    		<goal>makeAggregateBom</goal>
-                		</goals>
-            		</execution>
-        		</executions>
-        		<configuration>
-            		<projectType>library</projectType>
-            		<schemaVersion>1.4</schemaVersion>
-            		<includeBomSerialNumber>true</includeBomSerialNumber>
-            		<includeCompileScope>true</includeCompileScope>
-            		<includeProvidedScope>true</includeProvidedScope>
-        			<includeRuntimeScope>true</includeRuntimeScope>
-        			<includeSystemScope>true</includeSystemScope>
-        			<includeTestScope>false</includeTestScope>
-            		<includeLicenseText>true</includeLicenseText>
-            		<outputReactorProjects>true</outputReactorProjects>
-            		<outputFormat>all</outputFormat>
-        			<outputName>TLSFuzzer-sBOM</outputName>
-        			<outputDirectory>.</outputDirectory><!-- usually target, if not redefined in pom.xml -->
-        			<verbose>false</verbose><!-- = ${cyclonedx.verbose} -->
-    			</configuration>
-    		</plugin>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>makeAggregateBom</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<projectType>library</projectType>
+					<schemaVersion>1.4</schemaVersion>
+					<includeBomSerialNumber>true</includeBomSerialNumber>
+					<includeCompileScope>true</includeCompileScope>
+					<includeProvidedScope>true</includeProvidedScope>
+					<includeRuntimeScope>true</includeRuntimeScope>
+					<includeSystemScope>true</includeSystemScope>
+					<includeTestScope>false</includeTestScope>
+					<includeLicenseText>true</includeLicenseText>
+					<outputReactorProjects>true</outputReactorProjects>
+					<outputFormat>all</outputFormat>
+					<outputName>TLSFuzzer-sBOM</outputName>
+					<outputDirectory>.</outputDirectory><!-- usually target, if not redefined in
+					pom.xml -->
+					<verbose>false</verbose><!-- = ${cyclonedx.verbose} -->
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>

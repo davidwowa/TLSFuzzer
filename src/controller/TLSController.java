@@ -1,17 +1,19 @@
 package controller;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import client.TLSClient;
 import util.RandomUtil;
 
 public class TLSController {
 
-	private static final Logger logger = LogManager.getLogger(TLSController.class);
+	private static final Logger logger = Logger.getLogger(TLSController.class.getName());
 
 	public static String tlsHost = "localhost";
 	public static int tlsPort = 31337;
@@ -21,11 +23,12 @@ public class TLSController {
 	public static int threadsAmount = 3;
 
 	public static void main(String[] args) {
+		setupLogger();
 		TLSClient client = TLSClient.getInstance();
 
 		ExecutorService executor = Executors.newFixedThreadPool(threadsAmount);
 
-		if (logger.isInfoEnabled()) {
+		if (logger.isLoggable(Level.INFO)) {
 			logger.info(String.format("start tls fuzzy test host %s, port %s, amount tls requests %s", tlsHost, tlsPort,
 					amountTLSRequests));
 		}
@@ -80,8 +83,8 @@ public class TLSController {
 					showStatus("data generator 2 : random data in completely hello client", amountTLSRequests, i);
 					// TODO get status from ExecutorService is maybe better way...
 				} catch (Exception e) {
-					if (logger.isErrorEnabled()) {
-						logger.error(String.format("error tls fuzzer test number %s", i), e);
+					if (logger.isLoggable(Level.SEVERE)) {
+						logger.severe(String.format("error tls fuzzer test number %s %s", i, e));
 					}
 					e.printStackTrace();
 				}
@@ -95,8 +98,24 @@ public class TLSController {
 	public static void showStatus(String name, int total, int part) {
 		float percentage = ((float) part / (float) total) * 100f;
 		if (((int) percentage % 5 == 0 || (int) percentage == 100 || (int) percentage == 99)
-				&& logger.isInfoEnabled()) {
+				&& logger.isLoggable(Level.INFO)) {
 			logger.info(String.format("%s %s %%", name, percentage));
+		}
+	}
+
+	private static void setupLogger() {
+		try {
+			FileHandler fileHandler = new FileHandler("TLSFuzzer.log", 1024 * 1024, 5, true);
+
+			fileHandler.setFormatter(new SimpleFormatter());
+
+			logger.addHandler(fileHandler);
+			logger.setLevel(Level.ALL);
+
+			logger.setUseParentHandlers(false);
+
+		} catch (SecurityException | IOException e) {
+			logger.log(Level.SEVERE, "Error occurred in setting up the logger", e);
 		}
 	}
 }
