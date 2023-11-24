@@ -94,12 +94,12 @@ public class TLSController {
 		executor.shutdown();
 	}
 
-	// TODO make it ...
 	public static void showStatus(String name, int total, int part) {
-		float percentage = ((float) part / (float) total) * 100f;
-		if (((int) percentage % 5 == 0 || (int) percentage == 100 || (int) percentage == 99)
+		float percentage = ((float) part / (float) total) * 100;
+		int percentageRounded = Math.round(percentage);
+		if ((percentageRounded % 5 == 0 || percentageRounded == 100 || percentageRounded == 99)
 				&& logger.isLoggable(Level.INFO)) {
-			logger.info(String.format("%s %s %%", name, percentage));
+			logger.info(String.format("%s %s %%", name, percentageRounded));
 		}
 	}
 
