@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class RandomUtil {
 
-	private static final Logger logger = Logger.getLogger(RandomUtil.class.getName());
+	private static final Logger logger = LoggerUtil.getLogger(RandomUtil.class.getName());
 
 	public static RandomUtil instance;
 

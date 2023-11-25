@@ -1,18 +1,20 @@
 package client;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import common.CommonProperties;
+import util.LoggerUtil;
+import util.StringUtil;
+
 public class TLSClient {
 
-	private static final Logger logger = Logger.getLogger(TLSClient.class.getName());
+	private static final Logger logger = LoggerUtil.getLogger(TLSClient.class.getName());
 
-	public static TLSClient instance;
+	private static TLSClient instance;
 
 	private TLSClient() {
 		if (logger.isLoggable(Level.INFO)) {
@@ -27,37 +29,52 @@ public class TLSClient {
 		return instance;
 	}
 
-	public byte[] sendTLSMessage(String host, int port, byte[] message) throws IOException {
-		Socket socket = new Socket(host, port);
+	public byte[] sendTLSMessage(String host, int port, byte[] message) {
+		boolean send = false;
+		boolean receive = false;
+		try (Socket socket = new Socket(host, port);
+				OutputStream out = socket.getOutputStream();
+				InputStream in = socket.getInputStream()) {
 
-		OutputStream out = socket.getOutputStream();
+			socket.setSoTimeout(CommonProperties.getInstance().getRequestTimeout());
 
-		out.write(message, 0, message.length);
+			out.write(message, 0, message.length);
+			send = true;
+			byte[] buffer = new byte[1024];
+			int bytesRead;
+			StringBuilder response = new StringBuilder();
 
-		out.close();
-		socket.close();
-
-		return getResponse(host, port);
-	}
-
-	public byte[] getResponse(String host, int port) {
-		try (Socket socket = new Socket(host, port)) {
-			// TODO set config for this
-			socket.setSoTimeout(1000); // Read timeout in milliseconds
-			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-			StringBuilder stringBuilder = new StringBuilder();
-
-			String line;
-			while ((line = reader.readLine()) != null) {
-				stringBuilder.append(line);
+			while ((bytesRead = in.read(buffer)) != -1) {
+				response.append(new String(buffer, 0, bytesRead));
+			}
+			receive = true;
+			if (logger.isLoggable(Level.FINE)) {
+				logger.log(Level.FINE, String.format("Response from server: %s", response.toString()));
 			}
 
-			return stringBuilder.toString().getBytes();
+			byte[] arr = response.toString().getBytes();
+
+			if (arr.length > 0 && logger.isLoggable(Level.INFO)) {
+				logger.info(String.format("\n%s:%s \nrequest:%s \nresponse %s", host, port,
+						StringUtil.getInstance().toHexString(message), StringUtil.getInstance().toHexString(arr)));
+			}
+
+			return arr;
 		} catch (Exception e) {
-			// TODO make a decision
-			// e.printStackTrace();
+			if (logger.isLoggable(Level.SEVERE)) {
+				logger.log(Level.SEVERE,
+						String.format("Error on \nsend(%b)/receive(%b) \n" + //
+								"from %s:%s message %s", send, receive, host, port,
+								StringUtil.getInstance().toHexString(message)));
+			}
+			e.printStackTrace();
 		}
 		return new byte[0];
+		// Socket socket = new Socket(host, port);
+		// OutputStream out = socket.getOutputStream();
+		// out.write(message, 0, message.length);
+		// out.close();
+		// socket.close();
+		// return getResponse(host, port);
 	}
 }

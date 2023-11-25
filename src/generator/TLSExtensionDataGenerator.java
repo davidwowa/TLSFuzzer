@@ -3,12 +3,13 @@ package generator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import util.LoggerUtil;
 import util.RandomUtil;
 import util.StringUtil;
 
 public class TLSExtensionDataGenerator {
 
-	private static final Logger logger = Logger.getLogger(TLSExtensionDataGenerator.class.getName());
+	private static final Logger logger = LoggerUtil.getLogger(TLSExtensionDataGenerator.class.getName());
 
 	public byte[] createTestExtensionLength7() {
 		String str = "00 a3";

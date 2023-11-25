@@ -30,3 +30,4 @@ Import organizing -> Ctrl-Shift-O
 
 `mvn clean install` - refresh project  
 `mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom` - generate sBOM  
+`mvn package` - create jar

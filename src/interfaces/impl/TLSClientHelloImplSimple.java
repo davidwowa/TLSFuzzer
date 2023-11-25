@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import generator.TLS13TestValidDataGenerator;
 import interfaces.ITLSClientHello;
 import util.ArrayUtils;
+import util.LoggerUtil;
 
 /**
  * @author David Zakrevskyy
@@ -15,7 +16,7 @@ import util.ArrayUtils;
  */
 public class TLSClientHelloImplSimple implements ITLSClientHello {
 
-    private static final Logger logger = Logger.getLogger(TLSClientHelloImplSimple.class.getName());
+    private static final Logger logger = LoggerUtil.getLogger(TLSClientHelloImplSimple.class.getName());
     private TLS13TestValidDataGenerator generator;
 
     public TLSClientHelloImplSimple() {

@@ -1,29 +1,28 @@
 package controller;
 
-import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import client.TLSClient;
+import common.CommonProperties;
+import generator.TLS13TestDataGenerator;
+import util.LoggerUtil;
 import util.RandomUtil;
+import util.StringUtil;
 
 public class TLSController {
 
-	private static final Logger logger = Logger.getLogger(TLSController.class.getName());
+	private static final Logger logger = LoggerUtil.getLogger(TLSController.class.getName());
 
-	public static String tlsHost = "localhost";
-	public static int tlsPort = 31337;
-
-	public static int amountTLSRequests = 100;
-
-	public static int threadsAmount = 3;
+	public static String tlsHost = CommonProperties.getInstance().getTlsHost();
+	public static int tlsPort = CommonProperties.getInstance().getTlsPort();
+	public static int amountTLSRequests = CommonProperties.getInstance().getAmountTLSRequests();
+	public static int threadsAmount = CommonProperties.getInstance().getThreadsAmount();
 
 	public static void main(String[] args) {
-		setupLogger();
 		TLSClient client = TLSClient.getInstance();
 
 		ExecutorService executor = Executors.newFixedThreadPool(threadsAmount);
@@ -32,66 +31,138 @@ public class TLSController {
 			logger.info(String.format("start tls fuzzy test host %s, port %s, amount tls requests %s", tlsHost, tlsPort,
 					amountTLSRequests));
 		}
-		// executor.submit(() -> {
-		// try {
-		// client.sendTLSMessage(tlsHost, tlsPort,
-		// TLS13TestDataGenerator.getInstance().generateExampleTLSHello());
-		// } catch (Exception e) {
-		// if (logger.isErrorEnabled()) {
-		// logger.error("error on start from tls fuzzer test", e);
-		// }
-		// e.printStackTrace();
-		// }
-		// });
-		// executor.submit(() -> {
-		// for (int i = 0; i < amountTLSRequests; i++) {
-		// try {
-		// client.sendTLSMessage(tlsHost, tlsPort,
-		// TLS13TestDataGenerator.getInstance().generateExampleTLSHelloRandomExtensionData());
-		// showStatus("data generator 1 : only hello client extensions",
-		// amountTLSRequests, i);
-		// } catch (Exception e) {
-		// if (logger.isErrorEnabled()) {
-		// logger.error(String.format("error tls fuzzer test number %s", i), e);
-		// }
-		// e.printStackTrace();
-		// }
-		// }
-		// });
-		// executor.submit(() -> {
-		// for (int i = 0; i < amountTLSRequests; i++) {
-		// try {
-		// client.sendTLSMessage(tlsHost, tlsPort,
-		// TLS13TestDataGenerator.getInstance().generateExampleTLSRHelloRandomExtensionData());
-		// showStatus("data generator 2 : random data in completely hello client",
-		// amountTLSRequests, i);
-		// } catch (Exception e) {
-		// if (logger.isErrorEnabled()) {
-		// logger.error(String.format("error tls fuzzer test number %s", i), e);
-		// }
-		// e.printStackTrace();
-		// }
-		// }
-		// });
+
+		simpleTLSRandomFixArray(client, executor);
+		simpleTLSRandomArray(client, executor);
+		simpleTLSHelloTest(client, executor);
+		simpleTLSHelloRandomExtensionTest(client, executor);
+		simpleTLSRHelloRandomExtensionTest(client, executor);
+
+		executor.shutdown();
+	}
+
+	private static void simpleTLSRandomFixArray(TLSClient client, ExecutorService executor) {
 		executor.submit(() -> {
 			long startTime = System.currentTimeMillis();
 			for (int i = 0; i < amountTLSRequests; i++) {
 				try {
 					byte[] response = client.sendTLSMessage(tlsHost, tlsPort,
-							RandomUtil.getInstance().generateRandomArray(100));
-					logger.info(new String(response));
-					showStatus("data generator 2 : random data in completely hello client", amountTLSRequests, i);
+							RandomUtil.getInstance()
+									.generateRandomArray(CommonProperties.getInstance().getRandomArraySize()));
+					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
+						logger.info(StringUtil.getInstance().toHexString(response));
+					}
+					showStatus("simpleTLSRandomFixArray", amountTLSRequests, i);
 					// TODO get status from ExecutorService is maybe better way...
 				} catch (Exception e) {
 					if (logger.isLoggable(Level.SEVERE)) {
-						logger.severe(String.format("error tls fuzzer test number %s %s", i, e));
+						logger.severe(
+								String.format("simpleTLSRandomFixArray: error tls fuzzer test number %s %s", i, e));
 					}
 					e.printStackTrace();
 				}
 			}
-			logger.info(String.format("end after %s ms", System.currentTimeMillis() - startTime));
+			logger.info(
+					String.format("simpleTLSRandomFixArray: end after %s ms", System.currentTimeMillis() - startTime));
 		});
-		executor.shutdown();
+	}
+
+	private static void simpleTLSRandomArray(TLSClient client, ExecutorService executor) {
+		executor.submit(() -> {
+			long startTime = System.currentTimeMillis();
+			for (int i = 0; i < amountTLSRequests; i++) {
+				try {
+					SecureRandom random = SecureRandom.getInstance("NativePRNG");
+					int randomNumber = random.nextInt(CommonProperties.getInstance().getRandomMaxArraySize());
+					byte[] response = client.sendTLSMessage(tlsHost, tlsPort,
+							RandomUtil.getInstance().generateRandomArray(randomNumber));
+					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
+						logger.info(StringUtil.getInstance().toHexString(response));
+					}
+					showStatus("simpleTLSRandomArray", amountTLSRequests, i);
+					// TODO get status from ExecutorService is maybe better way...
+				} catch (Exception e) {
+					if (logger.isLoggable(Level.SEVERE)) {
+						logger.severe(String.format("simpleTLSRandomArray: error tls fuzzer test number %s %s", i, e));
+					}
+					e.printStackTrace();
+				}
+			}
+			logger.info(String.format("simpleTLSRandomArray: end after %s ms", System.currentTimeMillis() - startTime));
+		});
+	}
+
+	private static void simpleTLSHelloTest(TLSClient client, ExecutorService executor) {
+		executor.submit(() -> {
+			long startTime = System.currentTimeMillis();
+			for (int i = 0; i < amountTLSRequests; i++) {
+				try {
+					byte[] response = client.sendTLSMessage(tlsHost, tlsPort,
+							TLS13TestDataGenerator.getInstance().generateExampleTLSHello());
+					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
+						logger.info(StringUtil.getInstance().toHexString(response));
+					}
+					showStatus("simpleTLSHelloTest", amountTLSRequests, i);
+					// TODO get status from ExecutorService is maybe better way...
+				} catch (Exception e) {
+					if (logger.isLoggable(Level.SEVERE)) {
+						logger.severe(String.format("simpleTLSHelloTest: error tls fuzzer test number %s %s", i, e));
+					}
+					e.printStackTrace();
+				}
+			}
+			logger.info(String.format("simpleTLSHelloTest: end after %s ms", System.currentTimeMillis() - startTime));
+		});
+	}
+
+	private static void simpleTLSRHelloRandomExtensionTest(TLSClient client, ExecutorService executor) {
+		executor.submit(() -> {
+			long startTime = System.currentTimeMillis();
+			for (int i = 0; i < amountTLSRequests; i++) {
+				try {
+					byte[] response = client.sendTLSMessage(tlsHost, tlsPort,
+							TLS13TestDataGenerator.getInstance().generateExampleTLSRHelloRandomExtensionData());
+					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
+						logger.info(StringUtil.getInstance().toHexString(response));
+					}
+					showStatus("simpleTLSRHelloRandomExtensionTest", amountTLSRequests, i);
+					// TODO get status from ExecutorService is maybe better way...
+				} catch (Exception e) {
+					if (logger.isLoggable(Level.SEVERE)) {
+						logger.severe(String.format(
+								"simpleTLSRHelloRandomExtensionTest: error tls fuzzer test number %s %s", i, e));
+					}
+					e.printStackTrace();
+				}
+			}
+			logger.info(String.format("simpleTLSRHelloRandomExtensionTest: end after %s ms",
+					System.currentTimeMillis() - startTime));
+		});
+	}
+
+	private static void simpleTLSHelloRandomExtensionTest(TLSClient client, ExecutorService executor) {
+		executor.submit(() -> {
+			long startTime = System.currentTimeMillis();
+			for (int i = 0; i < amountTLSRequests; i++) {
+				try {
+					byte[] response = client.sendTLSMessage(tlsHost, tlsPort,
+							TLS13TestDataGenerator.getInstance().generateExampleTLSHelloRandomExtensionData());
+					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
+						logger.info(StringUtil.getInstance().toHexString(response));
+					}
+					showStatus("simpleTLSHelloRandomExtensionTest", amountTLSRequests, i);
+					// TODO get status from ExecutorService is maybe better way...
+				} catch (Exception e) {
+					if (logger.isLoggable(Level.SEVERE)) {
+						logger.severe(String
+								.format("simpleTLSHelloRandomExtensionTest: error tls fuzzer test number %s %s", i, e));
+					}
+					e.printStackTrace();
+				}
+			}
+			logger.info(String.format("simpleTLSHelloRandomExtensionTest: end after %s ms",
+					System.currentTimeMillis() - startTime));
+		});
 	}
 
 	public static void showStatus(String name, int total, int part) {
@@ -100,22 +171,6 @@ public class TLSController {
 		if ((percentageRounded % 5 == 0 || percentageRounded == 100 || percentageRounded == 99)
 				&& logger.isLoggable(Level.INFO)) {
 			logger.info(String.format("%s %s %%", name, percentageRounded));
-		}
-	}
-
-	private static void setupLogger() {
-		try {
-			FileHandler fileHandler = new FileHandler("TLSFuzzer.log", 1024 * 1024, 5, true);
-
-			fileHandler.setFormatter(new SimpleFormatter());
-
-			logger.addHandler(fileHandler);
-			logger.setLevel(Level.ALL);
-
-			logger.setUseParentHandlers(false);
-
-		} catch (SecurityException | IOException e) {
-			logger.log(Level.SEVERE, "Error occurred in setting up the logger", e);
 		}
 	}
 }

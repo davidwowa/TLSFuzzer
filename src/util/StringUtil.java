@@ -49,10 +49,14 @@ public class StringUtil {
 	}
 
 	public String toHexString(byte[] byteArray) {
-		String hexString = "";
-		for (byte i : byteArray) {
-			hexString += String.format("%02X", i);
-		}
-		return hexString;
+		StringBuilder hexString = new StringBuilder();
+        for (byte b : byteArray) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex).append(" ");
+        }
+        return hexString.toString().toUpperCase().trim();
 	}
 }

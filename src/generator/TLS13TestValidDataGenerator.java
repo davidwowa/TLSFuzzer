@@ -4,12 +4,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import util.ArrayUtils;
+import util.LoggerUtil;
 import util.RandomUtil;
 import util.StringUtil;
 
 public class TLS13TestValidDataGenerator {
 
-	private static final Logger logger = Logger.getLogger(TLS13TestValidDataGenerator.class.getName());
+	private static final Logger logger = LoggerUtil.getLogger(TLS13TestValidDataGenerator.class.getName());
 
 	private static TLS13TestValidDataGenerator instance;
 

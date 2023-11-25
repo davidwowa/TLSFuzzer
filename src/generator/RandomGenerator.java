@@ -6,9 +6,11 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import util.LoggerUtil;
+
 public class RandomGenerator {
 
-	private static final Logger logger = Logger.getLogger(RandomGenerator.class.getName());
+	private static final Logger logger = LoggerUtil.getLogger(RandomGenerator.class.getName());
 
 	private static RandomGenerator instance;
 
