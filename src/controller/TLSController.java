@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import client.TLSClient;
 import common.CommonProperties;
 import generator.TLS13TestDataGenerator;
+import ui.TLSSystemTray;
 import util.LoggerUtil;
 import util.RandomUtil;
 import util.StringUtil;
@@ -22,7 +23,24 @@ public class TLSController {
 	public static int amountTLSRequests = CommonProperties.getInstance().getAmountTLSRequests();
 	public static int threadsAmount = CommonProperties.getInstance().getThreadsAmount();
 
+	private static TLSController instance;
+
+	private TLSController() {
+		TLSSystemTray.getInstance();
+	}
+
+	public static TLSController getInstance(){
+		if (instance == null) {
+			instance = new TLSController();
+		}
+		return instance;
+	}
+
 	public static void main(String[] args) {
+		TLSController.getInstance().mainTest();
+	}
+
+	public void mainTest() {
 		TLSClient client = TLSClient.getInstance();
 
 		ExecutorService executor = Executors.newFixedThreadPool(threadsAmount);
@@ -170,7 +188,9 @@ public class TLSController {
 		int percentageRounded = Math.round(percentage);
 		if ((percentageRounded % 5 == 0 || percentageRounded == 100 || percentageRounded == 99)
 				&& logger.isLoggable(Level.INFO)) {
-			logger.info(String.format("%s %s %%", name, percentageRounded));
+			String message = String.format("%s %s %%", name, percentageRounded);
+			logger.info(message);
+			TLSSystemTray.getInstance().showInfoMessage(name, message);
 		}
 	}
 }
