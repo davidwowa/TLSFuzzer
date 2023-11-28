@@ -29,7 +29,7 @@ public class TLSController {
 		TLSSystemTray.getInstance();
 	}
 
-	public static TLSController getInstance(){
+	public static TLSController getInstance() {
 		if (instance == null) {
 			instance = new TLSController();
 		}
@@ -60,6 +60,7 @@ public class TLSController {
 	}
 
 	private static void simpleTLSRandomFixArray(TLSClient client, ExecutorService executor) {
+		int lastStatus = 0;
 		executor.submit(() -> {
 			long startTime = System.currentTimeMillis();
 			for (int i = 0; i < amountTLSRequests; i++) {
@@ -70,7 +71,7 @@ public class TLSController {
 					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
 						logger.info(StringUtil.getInstance().toHexString(response));
 					}
-					showStatus("simpleTLSRandomFixArray", amountTLSRequests, i);
+					showStatus("simpleTLSRandomFixArray", amountTLSRequests, i, lastStatus);
 					// TODO get status from ExecutorService is maybe better way...
 				} catch (Exception e) {
 					if (logger.isLoggable(Level.SEVERE)) {
@@ -86,6 +87,7 @@ public class TLSController {
 	}
 
 	private static void simpleTLSRandomArray(TLSClient client, ExecutorService executor) {
+		int lastStatus = 0;
 		executor.submit(() -> {
 			long startTime = System.currentTimeMillis();
 			for (int i = 0; i < amountTLSRequests; i++) {
@@ -97,7 +99,7 @@ public class TLSController {
 					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
 						logger.info(StringUtil.getInstance().toHexString(response));
 					}
-					showStatus("simpleTLSRandomArray", amountTLSRequests, i);
+					showStatus("simpleTLSRandomArray", amountTLSRequests, i, lastStatus);
 					// TODO get status from ExecutorService is maybe better way...
 				} catch (Exception e) {
 					if (logger.isLoggable(Level.SEVERE)) {
@@ -111,6 +113,7 @@ public class TLSController {
 	}
 
 	private static void simpleTLSHelloTest(TLSClient client, ExecutorService executor) {
+		int lastStatus = 0;
 		executor.submit(() -> {
 			long startTime = System.currentTimeMillis();
 			for (int i = 0; i < amountTLSRequests; i++) {
@@ -120,7 +123,7 @@ public class TLSController {
 					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
 						logger.info(StringUtil.getInstance().toHexString(response));
 					}
-					showStatus("simpleTLSHelloTest", amountTLSRequests, i);
+					showStatus("simpleTLSHelloTest", amountTLSRequests, i, lastStatus);
 					// TODO get status from ExecutorService is maybe better way...
 				} catch (Exception e) {
 					if (logger.isLoggable(Level.SEVERE)) {
@@ -134,6 +137,7 @@ public class TLSController {
 	}
 
 	private static void simpleTLSRHelloRandomExtensionTest(TLSClient client, ExecutorService executor) {
+		int lastStatus = 0;
 		executor.submit(() -> {
 			long startTime = System.currentTimeMillis();
 			for (int i = 0; i < amountTLSRequests; i++) {
@@ -143,7 +147,7 @@ public class TLSController {
 					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
 						logger.info(StringUtil.getInstance().toHexString(response));
 					}
-					showStatus("simpleTLSRHelloRandomExtensionTest", amountTLSRequests, i);
+					showStatus("simpleTLSRHelloRandomExtensionTest", amountTLSRequests, i, lastStatus);
 					// TODO get status from ExecutorService is maybe better way...
 				} catch (Exception e) {
 					if (logger.isLoggable(Level.SEVERE)) {
@@ -159,6 +163,7 @@ public class TLSController {
 	}
 
 	private static void simpleTLSHelloRandomExtensionTest(TLSClient client, ExecutorService executor) {
+		int lastStatus = 0;
 		executor.submit(() -> {
 			long startTime = System.currentTimeMillis();
 			for (int i = 0; i < amountTLSRequests; i++) {
@@ -168,7 +173,7 @@ public class TLSController {
 					if (response.length != 0 && logger.isLoggable(Level.INFO)) {
 						logger.info(StringUtil.getInstance().toHexString(response));
 					}
-					showStatus("simpleTLSHelloRandomExtensionTest", amountTLSRequests, i);
+					showStatus("simpleTLSHelloRandomExtensionTest", amountTLSRequests, i, lastStatus);
 					// TODO get status from ExecutorService is maybe better way...
 				} catch (Exception e) {
 					if (logger.isLoggable(Level.SEVERE)) {
@@ -183,14 +188,19 @@ public class TLSController {
 		});
 	}
 
-	public static void showStatus(String name, int total, int part) {
+	public static void showStatus(String name, int total, int part, int lastShowedNumber) {
+		
 		float percentage = ((float) part / (float) total) * 100;
 		int percentageRounded = Math.round(percentage);
+
 		if ((percentageRounded % 5 == 0 || percentageRounded == 100 || percentageRounded == 99)
 				&& logger.isLoggable(Level.INFO)) {
-			String message = String.format("%s %s %%", name, percentageRounded);
-			logger.info(message);
-			TLSSystemTray.getInstance().showInfoMessage(name, message);
+			if (percentageRounded != lastShowedNumber) {
+				String message = String.format("%s %s %%", name, percentageRounded);
+				logger.info(message);
+				TLSSystemTray.getInstance().showInfoMessage(name, message);
+				lastShowedNumber = percentageRounded;
+			}
 		}
 	}
 }
