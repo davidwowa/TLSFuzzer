@@ -1,12 +1,12 @@
-package generator;
+package tech.cybersword.tls.fuzzer.generator;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import util.ArrayUtils;
-import util.LoggerUtil;
-import util.RandomUtil;
-import util.StringUtil;
+import tech.cybersword.tls.fuzzer.util.ArrayUtils;
+import tech.cybersword.tls.fuzzer.util.LoggerUtil;
+import tech.cybersword.tls.fuzzer.util.RandomUtil;
+import tech.cybersword.tls.fuzzer.util.StringUtil;
 
 public class TLS13TestValidDataGenerator {
 

@@ -1,4 +1,4 @@
-package util;
+package tech.cybersword.tls.fuzzer.util;
 
 public class Base62 {
     private static final String BASE62 = "/0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

@@ -1,12 +1,12 @@
-package interfaces.impl;
+package tech.cybersword.tls.fuzzer.interfaces.impl;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import generator.TLS13TestValidDataGenerator;
-import interfaces.ITLSClientHello;
-import util.ArrayUtils;
-import util.LoggerUtil;
+import tech.cybersword.tls.fuzzer.generator.TLS13TestValidDataGenerator;
+import tech.cybersword.tls.fuzzer.interfaces.ITLSClientHello;
+import tech.cybersword.tls.fuzzer.util.ArrayUtils;
+import tech.cybersword.tls.fuzzer.util.LoggerUtil;
 
 /**
  * @author David Zakrevskyy

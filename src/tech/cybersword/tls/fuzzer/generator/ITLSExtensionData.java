@@ -1,4 +1,4 @@
-package generator;
+package tech.cybersword.tls.fuzzer.generator;
 
 public interface ITLSExtensionData {
 

@@ -1,4 +1,4 @@
-package tests;
+package tech.cybersword.tls.fuzzer.tests;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;

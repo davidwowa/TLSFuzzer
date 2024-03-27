@@ -107,3 +107,9 @@ NCAT DEBUG: Removed fd 5 from list, nfds 1, maxfd 0
 # Randoms
 
 [secure random](https://www.baeldung.com/java-secure-random)  
+
+# Build
+
+`./prepare.sh`  
+`~/java_env/jdk/Contents/Home/bin/java -jar target/TLSFuzzer-0.0.1-SNAPSHOT.jar`  
+`./clean_logs.sh`  

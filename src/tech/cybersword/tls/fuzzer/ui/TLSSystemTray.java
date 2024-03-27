@@ -1,4 +1,4 @@
-package ui;
+package tech.cybersword.tls.fuzzer.ui;
 
 import java.awt.Image;
 import java.awt.MenuItem;
@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import controller.TLSController;
-import util.LoggerUtil;
+import tech.cybersword.tls.fuzzer.controller.TLSController;
+import tech.cybersword.tls.fuzzer.util.LoggerUtil;
 
 public class TLSSystemTray {
 

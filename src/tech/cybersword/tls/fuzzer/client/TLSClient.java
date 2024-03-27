@@ -1,4 +1,4 @@
-package client;
+package tech.cybersword.tls.fuzzer.client;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -6,9 +6,9 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import common.CommonProperties;
-import util.LoggerUtil;
-import util.StringUtil;
+import tech.cybersword.tls.fuzzer.common.CommonProperties;
+import tech.cybersword.tls.fuzzer.util.LoggerUtil;
+import tech.cybersword.tls.fuzzer.util.StringUtil;
 
 public class TLSClient {
 

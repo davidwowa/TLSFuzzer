@@ -1,4 +1,4 @@
-package util;
+package tech.cybersword.tls.fuzzer.util;
 
 import java.net.InetAddress;
 

@@ -1,4 +1,4 @@
-package crypto;
+package tech.cybersword.tls.fuzzer.crypto;
 
 import java.security.Key;
 import java.security.KeyPair;

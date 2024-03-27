@@ -1,13 +1,14 @@
-package util;
+package tech.cybersword.tls.fuzzer.util;
 
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.SSLSocketFactory;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+
 public class SSLLookup {
-     public static void main(String[] args) {
+    public static void main(String[] args) {
         String hostname = "google.com"; // Replace with your target hostname
         int port = 443; // Standard HTTPS port
 
@@ -28,4 +29,3 @@ public class SSLLookup {
         }
     }
 }
-

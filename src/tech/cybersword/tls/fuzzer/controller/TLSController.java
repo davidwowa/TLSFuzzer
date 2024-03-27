@@ -1,4 +1,4 @@
-package controller;
+package tech.cybersword.tls.fuzzer.controller;
 
 import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
@@ -6,13 +6,13 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import client.TLSClient;
-import common.CommonProperties;
-import generator.TLS13TestDataGenerator;
-import ui.TLSSystemTray;
-import util.LoggerUtil;
-import util.RandomUtil;
-import util.StringUtil;
+import tech.cybersword.tls.fuzzer.client.TLSClient;
+import tech.cybersword.tls.fuzzer.common.CommonProperties;
+import tech.cybersword.tls.fuzzer.generator.TLS13TestDataGenerator;
+import tech.cybersword.tls.fuzzer.ui.TLSSystemTray;
+import tech.cybersword.tls.fuzzer.util.LoggerUtil;
+import tech.cybersword.tls.fuzzer.util.RandomUtil;
+import tech.cybersword.tls.fuzzer.util.StringUtil;
 
 public class TLSController {
 
@@ -189,7 +189,7 @@ public class TLSController {
 	}
 
 	public static void showStatus(String name, int total, int part, int lastShowedNumber) {
-		
+
 		float percentage = ((float) part / (float) total) * 100;
 		int percentageRounded = Math.round(percentage);
 

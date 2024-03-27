@@ -1,13 +1,16 @@
-package tests;
+package tech.cybersword.tls.fuzzer.tests;
 
 import java.math.BigDecimal;
 import java.util.Random;
 
 public class RandomUtils {
-	
-	public void init() {}
-	public void end() {}
-	
+
+	public void init() {
+	}
+
+	public void end() {
+	}
+
 	public String generateASCIIString(int lenght) {
 		Random r = new Random(255);
 

@@ -1,10 +1,10 @@
-package common;
+package tech.cybersword.tls.fuzzer.common;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import util.LoggerUtil;
-import util.PropertyReader;
+import tech.cybersword.tls.fuzzer.util.LoggerUtil;
+import tech.cybersword.tls.fuzzer.util.PropertyReader;
 
 public class CommonProperties {
 

@@ -1,11 +1,11 @@
-package generator;
+package tech.cybersword.tls.fuzzer.generator;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import util.LoggerUtil;
-import util.RandomUtil;
-import util.StringUtil;
+import tech.cybersword.tls.fuzzer.util.LoggerUtil;
+import tech.cybersword.tls.fuzzer.util.RandomUtil;
+import tech.cybersword.tls.fuzzer.util.StringUtil;
 
 public class TLSExtensionDataGenerator {
 
@@ -127,7 +127,8 @@ public class TLSExtensionDataGenerator {
 	public byte[] createTestExtensionServerNameR8() {
 		// 65 - 74 -> example.ulfheim.net
 		// 2^14 is max value for server bane
-		byte[] array = RandomUtil.getInstance().generateRandomArray(RandomUtil.getInstance().generateRandomNumber(2^13, 2^18));
+		byte[] array = RandomUtil.getInstance()
+				.generateRandomArray(RandomUtil.getInstance().generateRandomNumber(2 ^ 13, 2 ^ 18));
 		if (logger.isLoggable(Level.FINE)) {
 			logger.fine(String.format("length\tExtensionServerName\t\t\t%s", array.length));
 		}

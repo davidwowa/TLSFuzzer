@@ -1,9 +1,9 @@
-package generator;
+package tech.cybersword.tls.fuzzer.generator;
 
 import java.util.Random;
 
-import util.ArrayUtils;
-import util.StringUtil;
+import tech.cybersword.tls.fuzzer.util.ArrayUtils;
+import tech.cybersword.tls.fuzzer.util.StringUtil;
 
 public class TLS12TestDataGenerator {
 

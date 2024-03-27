@@ -1,4 +1,4 @@
-package server;
+package tech.cybersword.tls.fuzzer.server;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

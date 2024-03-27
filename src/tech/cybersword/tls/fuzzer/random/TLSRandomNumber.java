@@ -1,4 +1,4 @@
-package random;
+package tech.cybersword.tls.fuzzer.random;
 
 import java.math.BigDecimal;
 import java.security.SecureRandom;
@@ -44,11 +44,11 @@ public class TLSRandomNumber {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			System.out.println("other steps after this error");
-		} catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("other steps after other error");
 		} finally {
-			
+
 		}
 
 		System.out.println("next steps");
