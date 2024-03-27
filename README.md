@@ -111,5 +111,5 @@ NCAT DEBUG: Removed fd 5 from list, nfds 1, maxfd 0
 # Build
 
 `./prepare.sh`  
-`~/java_env/jdk/Contents/Home/bin/java -jar target/TLSFuzzer-0.0.1-SNAPSHOT.jar`  
+`~/java_env/jdk/Contents/Home/bin/java -jar target/tech.cybersword.tls.fuzzer-0.0.1-SNAPSHOT.jar`  
 `./clean_logs.sh`  

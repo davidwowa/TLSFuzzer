@@ -2,8 +2,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>TLSFuzzer</groupId>
-	<artifactId>TLSFuzzer</artifactId>
+	<groupId>tech.cybersword</groupId>
+	<artifactId>tech.cybersword.tls.fuzzer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
 		<dependency>
@@ -67,7 +67,7 @@
 					<includeLicenseText>true</includeLicenseText>
 					<outputReactorProjects>true</outputReactorProjects>
 					<outputFormat>all</outputFormat>
-					<outputName>TLSFuzzer-sBOM</outputName>
+					<outputName>tech.cybersword.tls.fuzzer.sBOM</outputName>
 					<outputDirectory>.</outputDirectory><!-- usually target, if not redefined in
 					pom.xml -->
 					<verbose>false</verbose><!-- = ${cyclonedx.verbose} -->

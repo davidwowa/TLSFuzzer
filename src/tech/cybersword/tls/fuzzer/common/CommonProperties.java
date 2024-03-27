@@ -20,7 +20,7 @@ public class CommonProperties {
     private static int randomMaxArraySize;
     private static int randomArraySize;
 
-    private static String path = "TLSFuzzer.properties";
+    private static String path = "tech.cybersword.tls.fuzzer.properties";
 
     private static CommonProperties instance;
 
